@@ -1,0 +1,12 @@
+\ Model Initializing Model_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+Maximize
+ 
+Subject To
+ R2: - ub + lb <= 0
+ R4: lb >= 0.5455620735787891
+ R6: ub <= 0
+Bounds
+ ub free
+ lb free
+End
