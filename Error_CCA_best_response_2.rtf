@@ -1,0 +1,112 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ****************************************\
+Solving using the CCA with Best Response\
+****************************************\
+*******\
+Computing the CCA. k1 = 5; k2 = 5\
+*******\
+/Users/applejustopuerto/Library/CloudStorage/OneDrive-Bibliotecascompartidas:UNIVERSIDADDESEVILLA/Grupo de Trabajo de Justo - Documentos/General/CCA/routine_casestudy2.py:91: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.\
+  results = results.append(serie, ignore_index=True)\
+Set parameter NonConvex to value 2\
+Set parameter Threads to value 12\
+Set parameter TimeLimit to value 720\
+Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (mac64[x86])\
+Thread count: 18 physical cores, 36 logical processors, using up to 12 threads\
+Optimize a model with 1586 rows, 1584 columns and 3960 nonzeros\
+Model fingerprint: 0x2387ed3d\
+Model has 51840 quadratic objective terms\
+Model has 2 quadratic constraints\
+Variable types: 792 continuous, 792 integer (792 binary)\
+Coefficient statistics:\
+  Matrix range     [1e+00, 1e+00]\
+  QMatrix range    [3e-04, 2e+02]\
+  Objective range  [0e+00, 0e+00]\
+  QObjective range [1e-04, 9e+01]\
+  Bounds range     [1e+00, 1e+00]\
+  RHS range        [5e+00, 5e+00]\
+  QRHS range       [1e+00, 1e+00]\
+Presolve time: 0.22s\
+Presolved: 105267 rows, 53425 columns, 366841 nonzeros\
+Presolved model has 2 quadratic constraint(s)\
+Presolved model has 51840 bilinear constraint(s)\
+Variable types: 52633 continuous, 792 integer (792 binary)\
+\
+Deterministic concurrent LP optimizer: primal and dual simplex (primal and dual model)\
+Showing first log only...\
+\
+Root relaxation presolved: 105267 rows, 53425 columns, 366841 nonzeros\
+\
+Concurrent spin time: 0.02s\
+\
+Solved with dual simplex (primal model)\
+\
+Root relaxation: objective 3.352422e+05, 952 iterations, 1.30 seconds (0.89 work units)\
+\
+    Nodes    |    Current Node    |     Objective Bounds      |     Work\
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time\
+\
+     0     0 335242.202    0 51840          - 335242.202      -     -    2s\
+H    0     0                       0.0000000 335242.202      -     -    2s\
+     0     0 333418.417    0 51726    0.00000 333418.417      -     -    6s\
+H    0     0                       0.0000000 333418.417      -     -    6s\
+     0     0 308281.655    0 48798    0.00000 308281.655      -     -   15s\
+     0     0 306614.392    0 47992    0.00000 306614.392      -     -   17s\
+     0     0 304510.655    0 47868    0.00000 304510.655      -     -   27s\
+     0     0 302688.370    0 47744    0.00000 302688.370      -     -   40s\
+     0     0 301013.420    0 47620    0.00000 301013.420      -     -   55s\
+     0     0 301013.420    0 47620    0.00000 301013.420      -     -   57s\
+H    0     0                       0.3300265 301013.420      -     -   58s\
+H    0     0                       0.3558262 301013.420      -     -   60s\
+H    0     0                       0.3574025 301013.420      -     -   61s\
+     0     2 301013.420    0 47620    0.35740 301013.420      -     -   64s\
+     1     4 295896.758    1 47668    0.35740 301013.420      -  3542   70s\
+     7    16 289521.422    3 46284    0.35740 295865.797      -  1544   81s\
+    15    28 285995.634    4 45604    0.35740 289491.877      -  3136   92s\
+    27    40 285972.543    5 44913    0.35740 289454.049      -  2924  400s\
+H   34    40                       0.3637509 289454.049      -  6394  400s\
+    39    52 285038.469    6 47047    0.36375 289454.049      - 15680  434s\
+    51    64 284720.846    6 46354    0.36375 289454.049      - 13593  485s\
+    63    78 284439.154    7 45635    0.36375 289454.049      - 12484  536s\
+    77    90 284273.021    8 45635    0.36375 289454.049      - 11705  720s\
+\
+Cutting planes:\
+  Implied bound: 9381\
+  MIR: 491\
+  RLT: 630\
+\
+Explored 89 nodes (1144371 simplex iterations) in 720.43 seconds (1574.57 work units)\
+Thread count was 12 (of 36 available processors)\
+\
+Solution count 6: 0.363751 0.357403 0.355826 ... 4.77303e-09\
+\
+Time limit reached\
+Best objective 3.637508593505e-01, best bound 2.894540492808e+05, gap 79574708.3723%\
+Solving the model fixing w1\
+\
+Set parameter TimeLimit to value 6.4795673549175262e+02\
+Objective Value: 0.693791641292241\
+Solving the model fixing w2\
+\
+Traceback (most recent call last):\
+\
+  File "/Users/applejustopuerto/opt/anaconda3/lib/python3.9/site-packages/spyder_kernels/py3compat.py", line 356, in compat_exec\
+    exec(code, globals, locals)\
+\
+  File "/Users/applejustopuerto/Library/CloudStorage/OneDrive-Bibliotecascompartidas:UNIVERSIDADDESEVILLA/Grupo de Trabajo de Justo - Documentos/General/CCA/routine_casestudy2.py", line 108, in <module>\
+    objval_train, w1, w2, time_elapsed, n_iter = CCA(training_rna2, training_dna2, k1, k2, time_limit=tmax, best_response=True, bigM_estimation = False)\
+\
+  File "/Users/applejustopuerto/Library/CloudStorage/OneDrive-Bibliotecascompartidas:UNIVERSIDADDESEVILLA/Grupo de Trabajo de Justo - Documentos/General/CCA/CCA.py", line 451, in CCA\
+    obj_new, w1, z1 = fixing_w2(w2, k1, dataset1, dataset2, time_limit = time_remaining/10, benders = False, bigM_estimation=bigM_estimation)\
+\
+  File "/Users/applejustopuerto/Library/CloudStorage/OneDrive-Bibliotecascompartidas:UNIVERSIDADDESEVILLA/Grupo de Trabajo de Justo - Documentos/General/CCA/CCA.py", line 291, in fixing_w2\
+    MODEL.optimize()\
+\
+  File "src/gurobipy/model.pxi", line 864, in gurobipy.Model.optimize\
+\
+GurobiError: Q matrix is not positive semi-definite (PSD). Set NonConvex parameter to 2 to solve model.}
