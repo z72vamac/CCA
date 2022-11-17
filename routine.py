@@ -19,6 +19,7 @@ if start:
     n_rows = results.shape[0]
 
 total_iterations = 0
+time_limit = 7200
 
 for mode in range(5, 6):
     dataset1, dataset2, ks = initializing(mode)
@@ -62,7 +63,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
 
-                objval_train, w1, w2, time_elapsed, n_iter = CCA(training_dataset1, training_dataset2, k1, k2, best_response=False)
+                objval_train, w1, w2, time_elapsed, n_iter = CCA(training_dataset1, training_dataset2, k1, k2, time_limit = time_limit, best_response=False)
 
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
                 norm2 = np.sqrt(w2.T @ test_dataset2.T @ test_dataset2 @ w2)
@@ -89,7 +90,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
     
-                objval_train, w1, w2, time_elapsed, n_iter = CCA(training_dataset1, training_dataset2, k1, k2, best_response=True)
+                objval_train, w1, w2, time_elapsed, n_iter = CCA(training_dataset1, training_dataset2, k1, k2, time_limit = time_limit, best_response=True)
 
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
                 norm2 = np.sqrt(w2.T @ test_dataset2.T @ test_dataset2 @ w2)
@@ -115,7 +116,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
     
-                objval_train, w1, w2, time_elapsed = multistart_CCA(training_dataset1, training_dataset2, k1, k2, best_response=True)
+                objval_train, w1, w2, time_elapsed = multistart_CCA(training_dataset1, training_dataset2, k1, k2, time_limit = time_limit, best_response=True)
     
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
                 norm2 = np.sqrt(w2.T @ test_dataset2.T @ test_dataset2 @ w2)
@@ -142,7 +143,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
     
-                objval_train, w1, w2, time_elapsed, n_cut = benders_CCA(training_dataset1, training_dataset2, k1, k2, init = False)
+                objval_train, w1, w2, time_elapsed, n_cut = benders_CCA(training_dataset1, training_dataset2, k1, k2, time_limit = time_limit, init = False)
     
     
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
@@ -169,7 +170,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
 
-                objval_train, w1, w2, time_elapsed, n_cut = benders_CCA(training_dataset1, training_dataset2, k1, k2, init = True)
+                objval_train, w1, w2, time_elapsed, n_cut = benders_CCA(training_dataset1, training_dataset2, k1, k2, time_limit = time_limit, init = True)
 
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
                 norm2 = np.sqrt(w2.T @ test_dataset2.T @ test_dataset2 @ w2)
@@ -219,7 +220,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
 
-                objval_train, w1, w2, time_elapsed = kernelsearch_CCA(training_dataset1, training_dataset2, k1, k2, NB = k1*k2, best_response = True)
+                objval_train, w1, w2, time_elapsed = kernelsearch_CCA(training_dataset1, training_dataset2, k1, k2, NB = k1*k2, time_limit = time_limit, best_response = True)
 
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
                 norm2 = np.sqrt(w2.T @ test_dataset2.T @ test_dataset2 @ w2)
@@ -244,7 +245,7 @@ for mode in range(5, 6):
                 training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
                 training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
 
-                objval_train, w1, w2, time_elapsed = combined_CCA(training_dataset1, training_dataset2, k1, k2, NB = k1*k2)
+                objval_train, w1, w2, time_elapsed = combined_CCA(training_dataset1, training_dataset2, k1, k2, NB = k1*k2, time_limit = time_limit)
 
                 norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
                 norm2 = np.sqrt(w2.T @ test_dataset2.T @ test_dataset2 @ w2)
