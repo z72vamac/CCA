@@ -461,6 +461,9 @@ def CCA(dataset1, dataset2, k1, k2, time_limit=1000, init=-1, best_response=Fals
 
             MODEL.optimize()
 
+            w1 = np.array([w1[i].X for i in range(p1)])
+            w2 = np.array([w2[j].X for j in range(p2)])
+
         else:
 
             end_time = time.time()
@@ -571,14 +574,11 @@ def multistart_CCA(dataset1, dataset2, k1, k2, n_iter=10, time_limit=1000, best_
     return objective, w1_sol, w2_sol, time_elapsed
 
 
-def subproblem(z1, z2, dataset1, dataset2, time_limit=100, bigM_estimation=True):
+def subproblem(z1, z2, dataset1, dataset2, k1, k2, time_limit=100, bigM_estimation=True):
 
     objective_value = 0
 
-    k1 = sum(z1)
-    k2 = sum(z2)
-
-    while objective_value < 0.01:
+    while 1:
 
         print(z1)
         print(z2)
@@ -588,6 +588,8 @@ def subproblem(z1, z2, dataset1, dataset2, time_limit=100, bigM_estimation=True)
         start_time = time.time()
 
         MODEL2 = gp.Model("Subproblem")
+
+        # MODEL2.reset()
 
         n, p1 = dataset1.shape
         n, p2 = dataset2.shape
@@ -620,6 +622,8 @@ def subproblem(z1, z2, dataset1, dataset2, time_limit=100, bigM_estimation=True)
             else:
                 M = max([1 / np.sqrt(min(np.abs(LA.eig(dataset1M.T @ dataset1M)[0]))),
                          1 / np.sqrt(min(np.abs(LA.eig(dataset2M.T @ dataset2M)[0])))])
+
+            print('El valor de la M es'+ str(M))
         else:
             M = 1
 
@@ -669,10 +673,7 @@ def subproblem(z1, z2, dataset1, dataset2, time_limit=100, bigM_estimation=True)
 
         objective_value = MODEL2.ObjVal
 
-        if objective_value < 0.001 or MODEL2.SolCount == 0:
-            # init = 2000
-            #
-            # np.random.seed(init)
+        if objective_value < 0.01:
             k1 = int(k1)
             k2 = int(k2)
 
@@ -688,11 +689,14 @@ def subproblem(z1, z2, dataset1, dataset2, time_limit=100, bigM_estimation=True)
             for i in range(p2):
                 z2[i] = arr2.copy()[i]
 
-        else:
-            break
+            MODEL2.dispose()
+
+            continue
+
+        break
 
 
-    objective = MODEL2.ObjVal
+    objective = objective_value
 
     w1_sol = np.zeros(p1)
     z1_sol = z1
@@ -738,7 +742,7 @@ def subproblem(z1, z2, dataset1, dataset2, time_limit=100, bigM_estimation=True)
     return objective, w1_sol, z1_sol, w2_sol, z2_sol, alpha1_sol, alpha2_sol, beta1_sol, beta2_sol
 
 
-def benders_CCA(dataset1, dataset2, k1, k2, init=True, time_limit=1000, bigM_estimation=True):
+def benders_CCA(dataset1, dataset2, k1, k2, time_limit=1000, init=True, bigM_estimation=True):
     print("*******")
     print("Computing the benders_CCA. k1 = " + str(k1) + "; k2 = " + str(k2))
     if init:
@@ -779,7 +783,7 @@ def benders_CCA(dataset1, dataset2, k1, k2, init=True, time_limit=1000, bigM_est
     MODEL.addConstr(z1.sum('*') <= k1)
     MODEL.addConstr(z2.sum('*') <= k2)
 
-    MODEL.addConstr(lb <= ub)
+    # MODEL.addConstr(lb <= ub)
 
     np.random.seed(1)
 
@@ -838,7 +842,7 @@ def benders_CCA(dataset1, dataset2, k1, k2, init=True, time_limit=1000, bigM_est
 
             end_time = time.time()
 
-            if obj_new < 0:
+            if obj_new < 0.01:
                 w1_sol = w1s[-1]
                 w2_sol = w2s[-1]
 
@@ -867,7 +871,7 @@ def benders_CCA(dataset1, dataset2, k1, k2, init=True, time_limit=1000, bigM_est
 
             end_time = time.time()
 
-            if obj_new < 0:
+            if obj_new < 0.01:
                 w1_sol = w1s[-1]
                 w2_sol = w2s[-1]
 
@@ -920,6 +924,9 @@ def benders_CCA(dataset1, dataset2, k1, k2, init=True, time_limit=1000, bigM_est
                                                                                                              z2_sol,
                                                                                                              dataset1,
                                                                                                              dataset2,
+                                                                                                             k1,
+                                                                                                             k2,
+                                                                                                             time_limit = time_limit / 10,
                                                                                                              bigM_estimation=bigM_estimation)
 
         w1s.append(w1_sol)
@@ -951,6 +958,9 @@ def benders_CCA(dataset1, dataset2, k1, k2, init=True, time_limit=1000, bigM_est
     objective, w1_sol, z1_sol, w2_sol, z2_sol, alpha1_sol, alpha2_sol, beta1_sol, beta2_sol = subproblem(z1_sol, z2_sol,
                                                                                                          dataset1,
                                                                                                          dataset2,
+                                                                                                         k1,
+                                                                                                         k2,
+                                                                                                         time_limit = time_limit / 10,
                                                                                                          bigM_estimation=bigM_estimation)
 
     w1s.append(w1_sol)
