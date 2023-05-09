@@ -1,0 +1,2 @@
+- Running all the models on one dataset (including Lasso), and show the behaviour of omega. Lasso is the first model to run. We save the non-zero values and we set k1, k2 as Lasso says.
+- See how the values of the ws change in terms of k1, k2 (
