@@ -5,17 +5,17 @@ require(CCA)
 library(dplyr)
 library(tidyverse)
 
-unscaled_winequalityred <- read.csv("~/Cosas de carlos/unscaled_datasets/raw_winequalityred.csv", sep=";")
+unscaled_winequalityred <- read.csv("raw_winequalityred.csv", sep=";")
 write.csv(unscaled_winequalityred[, 1:11], file = 'unscaled_winequalityred.csv', row.names = FALSE)
 scaled_winequalityred = unscaled_winequalityred %>% mutate_all(~(scale(.) %>% as.vector))
 write.csv(scaled_winequalityred[, 1:11], file = 'scaled_winequalityred.csv', row.names = FALSE)
 
-unscaled_winequalitywhite <- read.csv("~/Cosas de carlos/unscaled_datasets/raw_winequalitywhite.csv", sep=';')
-write.csv(unscaled_winequalityred[, 1:11], file = 'unscaled_winequalitywhite.csv')
+unscaled_winequalitywhite <- read.csv("raw_winequalitywhite.csv", sep=';')
+write.csv(unscaled_winequalitywhite[, 1:11], file = 'unscaled_winequalitywhite.csv')
 scaled_winequalitywhite = unscaled_winequalitywhite %>% mutate_all(~(scale(.) %>% as.vector))
-write.csv(scaled_winequalitywhite[, 1:11], file = 'scaled_winequalityred.csv', row.names = FALSE)
+write.csv(scaled_winequalitywhite[, 1:11], file = 'scaled_winequalitywhite.csv', row.names = FALSE)
 
-unscaled_studentmat <- read.csv("~/Cosas de carlos/unscaled_datasets/raw_studentmat.csv", sep=";", stringsAsFactors=TRUE)
+unscaled_studentmat <- read.csv("raw_studentmat.csv", sep=";", stringsAsFactors=TRUE)
 
 unscaled_studentmat[, 1] = as.numeric(unscaled_studentmat[, 1] == unscaled_studentmat[1, 1])
 unscaled_studentmat[, 2] = as.numeric(unscaled_studentmat[, 2] == unscaled_studentmat[1, 2])
@@ -36,7 +36,7 @@ scaled_studentmat = unscaled_studentmat[,c(1:8, 13:30)] %>% mutate_all(~(scale(.
 write.csv(scaled_studentmat, file = 'scaled_studentmat.csv', row.names = FALSE)
 
 
-unscaled_studentpor <- read.csv("~/Cosas de carlos/unscaled_datasets/raw_studentpor.csv", sep=";", stringsAsFactors=TRUE)
+unscaled_studentpor <- read.csv("raw_studentpor.csv", sep=";", stringsAsFactors=TRUE)
 
 unscaled_studentpor[, 1] = as.numeric(unscaled_studentpor[, 1] == unscaled_studentpor[1, 1])
 unscaled_studentpor[, 2] = as.numeric(unscaled_studentpor[, 2] == unscaled_studentpor[1, 2])
@@ -56,12 +56,12 @@ write.csv(unscaled_studentpor[, c(1:8, 13:30)], file="unscaled_studentpor.csv", 
 scaled_studentpor = unscaled_studentpor[,c(1:8, 13:30)] %>% mutate_all(~(scale(.) %>% as.vector))
 write.csv(scaled_studentpor, file = 'scaled_studentpor.csv', row.names = FALSE)
 
-unscaled_music <- read.csv("~/Cosas de carlos/unscaled_datasets/raw_music.txt", header=FALSE)
+unscaled_music <- read.csv("raw_music.txt", header=FALSE)
 write.csv(unscaled_music[, 1:68], file="unscaled_music.csv", row.names = FALSE)
 scaled_music = unscaled_music %>% mutate_all(~(scale(.) %>% as.vector))
 write.csv(scaled_music[, 1:68], file="scaled_music.csv", row.names = FALSE)
 
-unscaled_yearprediction <- read.csv("~/Cosas de carlos/unscaled_datasets/raw_yearprediction.txt", header=FALSE)
+unscaled_yearprediction <- read.csv("raw_yearprediction.txt", header=FALSE)
 write.csv(unscaled_yearprediction[, 2:91], file="unscaled_yearprediction.csv", row.names = FALSE)
 scaled_yearprediction = unscaled_yearprediction %>% mutate_all(~(scale(.) %>% as.vector))
 write.csv(scaled_yearprediction[, 2:91], file="scaled_yearprediction.csv", row.names = FALSE)

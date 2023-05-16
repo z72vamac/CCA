@@ -14,13 +14,13 @@ start = True
 n_rows = -1
 
 if start:
-    results = pd.read_csv('results/results_new.csv').iloc[:, 1:]
+    results = pd.read_csv('results/results_new2.csv').iloc[:, 1:]
     n_rows = results.shape[0]
 
 total_iterations = 0
 time_limit = 1000
 
-for mode in reversed(range(10)):
+for mode in range(5):
 
     for scaling in [False, True]:
         dataset1, dataset2, ks = initializing(mode, scaling)
@@ -48,7 +48,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "greedy_CCA", k1, k2, objval_train, objval_test, time_elapsed, -1], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -74,7 +74,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "CCA_without", k1, k2, objval_train, objval_test, time_elapsed, -1], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -101,7 +101,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "CCA_with", k1, k2, objval_train, objval_test, time_elapsed, n_iter], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -127,7 +127,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "multistart_CCA", k1, k2, objval_train, objval_test, time_elapsed, -1], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -155,7 +155,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "benders_CCA_without", k1, k2, objval_train, objval_test, time_elapsed, n_cut], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -181,7 +181,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "benders_CCA_with", k1, k2, objval_train, objval_test, time_elapsed, n_cut], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -206,7 +206,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "kernelsearch_CCA_without", k1, k2, objval_train, objval_test, time_elapsed, -1], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -231,7 +231,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "kernelsearch_CCA_with", k1, k2, objval_train, objval_test, time_elapsed, -1], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 
@@ -256,7 +256,7 @@ for mode in reversed(range(10)):
                     serie = pd.Series([mode, scaling, "combined_CCA", k1, k2, objval_train, objval_test, time_elapsed, -1], index=results.columns)
 
                     results = results.append(serie, ignore_index=True)
-                    results.to_csv('./results/results_new.csv')
+                    results.to_csv('./results/results_new2.csv')
 
                 total_iterations += 1
 

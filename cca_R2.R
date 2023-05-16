@@ -1,5 +1,5 @@
 library(data.table)
-library(tidyverse)
+# library(tidyverse)
 library(PMA)
 
 set.seed(22) 
@@ -23,15 +23,15 @@ for (mode in 6:9)
       for (iter in 0:4)
         # for (iter in 0:4)
       {
-        dataset1_train = read.csv(paste("C:/Users/Justo Puerto/UNIVERSIDAD DE SEVILLA/Grupo de Trabajo de Justo - General/CCA/datasets/r_datasets/training_dataset1_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)
+        dataset1_train = read.csv(paste("~/Cosas de carlos/CCA/old_datasets/r_datasets/training_dataset1_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)
         dims = dim(dataset1_train)
         dataset1_train = dataset1_train[ ,first_col:dims[2]]
-        dataset1_test = read.csv(paste("C:/Users/Justo Puerto/UNIVERSIDAD DE SEVILLA/Grupo de Trabajo de Justo - General/CCA/datasets/r_datasets/test_dataset1_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)[,first_col:dims[2]]
+        dataset1_test = read.csv(paste("~/Cosas de carlos/CCA/old_datasets/r_datasets/test_dataset1_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)[,first_col:dims[2]]
         
-        dataset2_train = read.csv(paste("C:/Users/Justo Puerto/UNIVERSIDAD DE SEVILLA/Grupo de Trabajo de Justo - General/CCA/datasets/r_datasets/training_dataset2_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)
+        dataset2_train = read.csv(paste("~/Cosas de carlos/CCA/old_datasets/r_datasets/training_dataset2_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)
         dims = dim(dataset2_train)
         dataset2_train = dataset2_train[ ,first_col:dims[2]]
-        dataset2_test = read.csv(paste("C:/Users/Justo Puerto/UNIVERSIDAD DE SEVILLA/Grupo de Trabajo de Justo - General/CCA/datasets/r_datasets/test_dataset2_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)[,first_col:dims[2]]
+        dataset2_test = read.csv(paste("~/Cosas de carlos/CCA/old_datasets/r_datasets/test_dataset2_mode_",mode,"_iteration_",iter,".csv", sep=""), header=TRUE)[,first_col:dims[2]]
         
         stop = FALSE
         

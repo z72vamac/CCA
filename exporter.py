@@ -20,7 +20,7 @@ time_limit = 7200
 
 
 for mode in range(6, 10):
-    dataset1, dataset2, ks = initializing(mode)
+    dataset1, dataset2, ks = initializing(mode, scaling=True)
 
     # for k1, k2 in ks:
 
@@ -34,11 +34,11 @@ for mode in range(6, 10):
             training_dataset1, test_dataset1 = train_test_split(dataset1, test_size=0.3, random_state=i)
             training_dataset2, test_dataset2 = train_test_split(dataset2, test_size=0.3, random_state=i)
 
-            training_dataset1.to_csv('./datasets/r_datasets/training_dataset1_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
-            training_dataset2.to_csv('./datasets/r_datasets/training_dataset2_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
+            training_dataset1.to_csv('./old_datasets/r_datasets/training_dataset1_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
+            training_dataset2.to_csv('./old_datasets/r_datasets/training_dataset2_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
 
-            test_dataset1.to_csv('./datasets/r_datasets/test_dataset1_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
-            test_dataset2.to_csv('./datasets/r_datasets/test_dataset2_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
+            test_dataset1.to_csv('./old_datasets/r_datasets/test_dataset1_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
+            test_dataset2.to_csv('./old_datasets/r_datasets/test_dataset2_mode_' + str(mode) + '_iteration_' + str(i) + '.csv')
             # objval_train, w1, w2, time_elapsed = greedy_CCA(training_dataset1, training_dataset2, k1, k2)
             #
             # norm1 = np.sqrt(w1.T @ test_dataset1.T @ test_dataset1 @ w1)
