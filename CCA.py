@@ -11,9 +11,10 @@ import sklearn.cross_decomposition as sk
 from sklearn.model_selection import train_test_split
 
 
-# Para ver sincronizacion en onedrive.
-
 def continuous_CCA(dataset1, dataset2):
+
+    # Standard Canonical Correlation Analysis implemented in Sklearn.
+
     start_time = time.time()
 
     n, p1 = dataset1.shape
@@ -49,6 +50,9 @@ def continuous_CCA(dataset1, dataset2):
 
 
 def greedy_CCA(dataset1, dataset2, k1, k2, time_limit=1000):
+
+    # Greedy algorithm implemented in Wiesel et al. (2008)
+
     start_time = time.time()
 
     n, p1 = dataset1.shape
@@ -145,6 +149,9 @@ def greedy_CCA(dataset1, dataset2, k1, k2, time_limit=1000):
 
 
 def fixing_w1(w1, k2, dataset1, dataset2, time_limit=100, benders=False, bigM_estimation=True):
+    
+    # Method that solve partially the Sparse CCA when w1 is fixed.
+
     print("Solving the model fixing w1\n")
 
     if bigM_estimation:
@@ -361,9 +368,16 @@ def fixing_w2(w2, k1, dataset1, dataset2, time_limit=100, benders=False, bigM_es
 
 
 def CCA(dataset1, dataset2, k1, k2, time_limit=1000, init=-1, best_response=False, bigM_estimation=True):
+
+
+    # principal function that solve exactly the Sparse CCA using Gurobi
+
+    # It also allows the user to use the best_response approach to get an approximate solution.
+
     print("*******")
     print("Computing the CCA. k1 = " + str(k1) + "; k2 = " + str(k2))
     print("*******")
+
 
     if bigM_estimation:
         # print(LA.eig(dataset1.T @ dataset1)[0])
@@ -745,6 +759,9 @@ def subproblem(z1, z2, dataset1, dataset2, k1, k2, time_limit=100, bigM_estimati
 
 
 def benders_CCA(dataset1, dataset2, k1, k2, time_limit=1000, init=True, bigM_estimation=True):
+    
+    # method that solve approximately the Sparse CCA using a benders-cut approach
+    
     print("*******")
     print("Computing the benders_CCA. k1 = " + str(k1) + "; k2 = " + str(k2))
     if init:
